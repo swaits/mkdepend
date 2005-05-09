@@ -1,0 +1,45 @@
+# flags and libs
+DEFS=@DEFS@
+LIBS=@LIBS@
+
+# compiler and flags
+CXX=@CXX@
+CXXFLAGS=@CXXFLAGS@
+CPPFLAGS=@CPPFLAGS@
+
+# linker
+LD=@LD@
+LDFLAGS=@LDFLAGS@
+STRIP=@STRIP@
+
+# misc programs
+RM=@RM@
+INSTALL=@INSTALL@
+
+# directories
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+bindir=@bindir@
+
+# our target and source code
+TARGET=mkdepend
+SRCS=mkdepend.cpp
+OBJS=$(SRCS:cpp=@OBJEXT@)
+
+##
+##
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(LD) $(LDFLAGS) $(LIBS) $? -o $@
+
+install: $(TARGET)
+	$(INSTALL) -s -m 755 $(TARGET) $(bindir)
+
+clean:
+	$(RM) -f $(OBJS) $(TARGET)
+
+.cpp.@OBJEXT@:
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(DEFS) $< -o $@
+

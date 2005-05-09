@@ -1,0 +1,26 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT()
+AC_PROG_CXX
+AC_LANG_CPLUSPLUS 
+
+dnl Checks for programs.
+AC_PROG_INSTALL
+AC_CHECK_PROG(RM,rm,rm,echo)
+AC_CHECK_PROG(LD,ld,ld,$(CXX))
+AC_CHECK_PROG(STRIP,strip,strip,echo)
+
+dnl Checks for libraries.
+#AC_HAVE_LIBRARY(stdc++)
+
+dnl Checks for header files.
+#AC_HEADER_STDC
+#AC_CHECK_HEADERS(map set vector string)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_OBJEXT
+#AC_EXEEXT
+
+dnl Checks for library functions.
+#AC_CHECK_FUNCS(fopen printf)
+
+AC_OUTPUT(Makefile)
