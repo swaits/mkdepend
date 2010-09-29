@@ -130,7 +130,7 @@ int FilesToScan()
 }
 
 // return true if 'str' begins with 'sub', else false
-bool StrBegins(char* str,char* sub)
+bool StrBegins(const char* str,const char* sub)
 {
 	int i = 0;
 	while (str[i] && sub[i])
@@ -209,7 +209,7 @@ char* StrSkipWhitespace(const char* str)
 	return c;
 }
 
-char* StrSeekCharSkipWhitespace(char* str,char* chars)
+char* StrSeekCharSkipWhitespace(char* str,const char* chars)
 {
 	char* c = str;
 	c = StrSkipWhitespace(c);
@@ -402,7 +402,7 @@ void OpenOutputFile()
 	char instr[4096];
 	while ( fgets(instr,4096,oldmakefile) )
 	{
-		fprintf(gOutputFile,instr);
+		fputs(instr,gOutputFile);
 		if ( StrBegins(instr,MAKEFILETAGSHORT) )
 		{
 			fclose(oldmakefile);
@@ -443,7 +443,7 @@ void CloseOutputFile()
 		char instr[4096];
 		while ( fgets(instr,4096,src) )
 		{
-			fprintf(dest,instr);
+			fputs(instr,dest);
 		}
 		fclose(src);
 		fclose(dest);
